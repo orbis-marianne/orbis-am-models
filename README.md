@@ -8,7 +8,7 @@ The module has the implementation of four tasks for Argumentation Mining:
 3. Argument Statement Classification (Sequence Classification Task), and
 4. Argument Statement Relation Classification (Sequence Classification Task)
 
-This repository was originally forked from: [Argument Mining Transformers](https://github.com/crscardellino/argumentation-mining-transformers/tree/master).
+This repository was originally forked from: [Argument Mining Transformers](https://github.com/crscardellino/argumentation-mining-transformers/tree/master). It contains new datasets and updated scripts based on the progress made during the ORBIS project.
 
 Requirements
 ------------
@@ -48,12 +48,10 @@ resolving the dependencies (e.g. for Linux, it's the GPU version).
 
 After that, you can install the AMTM library like:
 
-    (amtm-venv) $ pip install git+https://github.com/crscardellino/argumentation-mining-transformers@amtm-<VERSION>
+    (amtm-venv) $ pip install git+https://github.com/orbis-marianne/orbis-am-models@amtm-<VERSION>
 
 Replacing `<VERSION>` with the version you want to install (>= 1.0.1-beta).
-E.g.:
 
-    (amtm-venv) $ pip install git+https://github.com/crscardellino/argumentation-mining-transformers@amtm-1.0.1-beta
 
 **Note:** This installation of the AMTM Library will only install what's under
 the `./amtm` directory so you can access it via `from amtm import *` under your
@@ -77,7 +75,7 @@ Usage of the training and evaluation tools
 If you want to use the tools we offer for training and evaluation, you need
 first to clone the repository in your local environment:
 
-    $ git clone https://github.com/crscardellino/argumentation-mining-transformers/
+    $ git clone https://github.com/orbis-marianne/orbis-am-models/
 
 After that, create the environment and install the package from the local copy
 with the development requirements as well:
@@ -89,17 +87,17 @@ with the development requirements as well:
 
 ### Scripts for Traning and Evaluation
 
-There are 2 Python scripts, under the `./scripts` directory, ready to use:
+There are 2 Python scripts, under the `./scripts` directory, ready to use, one for training and the other for evaluation:
 [`./scripts/train.py`](./scripts/train.py) and
 [`./scripts/eval.py`](./scripts/eval.py).
 
-There are 4 bash scripts with examples of how to use each of these scripts:
-[`./train_rel_class.sh`](./train_rel_class.sh), [`./train_seq_tag.sh`](./train_seq_tag.sh),
-[`./eval_rel_class.sh`](./eval_rel_class.sh) and [`./eval_seq_tag.sh`](./eval_seq_tag.sh).
+There are 4 bash scripts with examples of how to use each of these scripts to performs the above Argumentation Mining tasks (1, 2, 3, 4, respectively):
+[`./train-eval-comp-class.sh`](./train-eval-comp-class.sh), [`./train-eval-comp-rel-class.sh`](./train-eval-comp-rel-class.sh),
+[`./train-eval-sta-class.sh`](./train-eval-sta-class.sh) and [`./train-eval-sta-rel-class.sh`](./train-eval-sta-rel-class.sh).
 
 ### Training
 
-The Python train script runs the training and validation loops using Lightning.
+The files above allow to perform both Training and evaluation. The training part of the script runs the training and validation loops using Lightning.
 It requires the following parameters:
 
     --train-data TRAIN_DATA
@@ -109,7 +107,7 @@ It requires the following parameters:
                         The directory where the model logs and checkpoints
                         will be stored.
     --task-type {rel-class,seq-tag}
-                        Type of task. Use one of: rel-class, seq-tag
+                        Type of task. Use one of: seq-tag, sta-class and rel-class
     --model MODEL
                         Either the name of one of the available models: bert,
                         deberta-v3, roberta, tiny-bert; or a Hugging Face
@@ -118,8 +116,8 @@ It requires the following parameters:
                         reached using this same trainer script please use the
                         `--load-from-checkpoint` option.
 
-The `train-data` file should be in the format corresponding to the task (tsv for
-rel-class and conll for seq-tag). The `output-dir` is the directory where MLFlow
+The `train-data` file should be in the format corresponding to the task: tsv for
+sta-class (the statement-level classification) and rel-class (both statement-level and component-level relation classification) and conll for seq-tag (the component-level classification). The `output-dir` is the directory where MLFlow
 will store both the results and the model checkpoints. Finally, `model` is the
 Hugging Face model to use (as a single string).
 
@@ -200,14 +198,10 @@ MLFlow and are recommended to be set to better differentiate between
 models, especially if you are trying to run several evaluations over certain
 models. The bash scripts with examples have a better indication of what to do.
 
-The files `./train_rel_class.sh` and `./train_seq_tag.sh` show examples for
-running train (and also evaluation) over the
-[`./data/neoplasm`](./data/neoplasm/) dataset, both for Relation Classification
-and Component Detection respectively.
 
 ### Evaluation
 
-The Python evaluation script runs the evaluation over some test data, it will
+The evaluation part of the script within the above mentioned files runs the evaluation over some test data, it will
 look for the last trained model with the metadata given by `experiment-name` and
 `run-name` and run the evaluation using one or all the checkpoints for that
 model. It requires the following parameters:
