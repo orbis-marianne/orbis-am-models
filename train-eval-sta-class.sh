@@ -1,9 +1,9 @@
 #!/bin/bash
 
 DATASET_NAME=combinedBcause-Touche-PE
-TRAIN_FILE=./data/statements/classification/$DATASET_NAME-train.tsv
-VALIDATION_FILE=./data/statements/classification/$DATASET_NAME-validation.tsv
-TEST_FILE=./data/statements/classification/$DATASET_NAME-test.tsv
+TRAIN_FILE=./data/statement-level-argumentation/classification/$DATASET_NAME-train.tsv
+VALIDATION_FILE=./data/statement-level-argumentation/classification/$DATASET_NAME-validation.tsv
+TEST_FILE=./data/statement-level-argumentation/classification/$DATASET_NAME-test.tsv
 
 OUTPUT_DIR=./output
 TASK_TYPE=sta-class

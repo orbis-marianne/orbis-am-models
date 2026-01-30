@@ -1,13 +1,13 @@
 #!/bin/bash
 
 DATASET_NAME=combinedBcause-Touche
-TRAIN_FILE=./data/statements/relation/$DATASET_NAME-train.tsv
-VALIDATION_FILE=./data/statements/relation/$DATASET_NAME-validation.tsv
-TEST_FILE=./data/statements/relation/$DATASET_NAME-test.tsv
+TRAIN_FILE=./data/statement-level-argumentation/relation/$DATASET_NAME-train.tsv
+VALIDATION_FILE=./data/statement-level-argumentation/relation/$DATASET_NAME-validation.tsv
+TEST_FILE=./data/statement-level-argumentation/relation/$DATASET_NAME-test.tsv
 
 OUTPUT_DIR=./output
 TASK_TYPE=rel-class
-MODEL=bert
+MODEL=deberta-v3 #roberta #bert
 LABELS="Attack Support" #noRel 
 RELEVANT_LABELS="Attack Support"
 #RUN_NAME=

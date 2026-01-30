@@ -1,13 +1,13 @@
 #!/bin/bash
 
-DATASET_NAME=disputool
-TRAIN_FILE=./data/sequence/$DATASET_NAME-train.conll
-VALIDATION_FILE=./data/sequence/$DATASET_NAME-validation.conll
-TEST_FILE=./data/sequence/$DATASET_NAME-test.conll
+DATASET_NAME=merged #supported datasets : merged, disputool, habernal, persuasive
+TRAIN_FILE=./data/component-level-argumentation/classification/$DATASET_NAME-train.conll
+VALIDATION_FILE=./data/component-level-argumentation/classification/$DATASET_NAME-validation.conll
+TEST_FILE=./data/component-level-argumentation/classification/$DATASET_NAME-test.conll
 
 OUTPUT_DIR=./output
 TASK_TYPE=seq-tag
-MODEL=deberta-v3 #roberta #bert
+MODEL=deberta-v3 # Supported models : deberta-v3, roberta, bert
 
 LABELS="PAD O B-Claim I-Claim B-Premise I-Premise"
 RELEVANT_LABELS="O B-Claim I-Claim B-Premise I-Premise"

@@ -1,13 +1,13 @@
 #!/bin/bash
 
-DATASET_NAME=disputool
-TRAIN_FILE=./data/relation/$DATASET_NAME-train.tsv
-VALIDATION_FILE=./data/relation/$DATASET_NAME-validation.tsv
-TEST_FILE=./data/relation/$DATASET_NAME-test.tsv
+DATASET_NAME=merged #supported datasets : merged, disputool, habernal, persuasive
+TRAIN_FILE=./data/component-level-argumentation/relation/$DATASET_NAME-train.tsv
+VALIDATION_FILE=./data/component-level-argumentation/relation/$DATASET_NAME-validation.tsv
+TEST_FILE=./data/component-level-argumentation/relation/$DATASET_NAME-test.tsv
 
 OUTPUT_DIR=./output
 TASK_TYPE=rel-class
-MODEL=deberta-v3 #roberta #
+MODEL=deberta-v3 # Supported models : deberta-v3, roberta, bert
 
 LABELS="noRel Attack Support"
 RELEVANT_LABELS="Attack Support"
